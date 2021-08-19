@@ -20,18 +20,16 @@ links.forEach(link => {
 })
 
 // Mudar o header da pagina quando der scroll
+function changeHeaderWhenScroll() {
+  const header = document.querySelector('#header')
+  const navHeight = header.offsetHeight
 
-const header = document.querySelector('#header')
-const navHeight = header.offsetHeight
-
-window.addEventListener('scroll', () => {
-  //scroll e maior que a altura do header
   if (window.scrollY >= navHeight) {
     header.classList.add('scroll')
   } else {
     header.classList.remove('scroll')
   }
-})
+}
 
 // Testimonials
 
@@ -58,7 +56,21 @@ scrollReveal.reveal(
   #about .text, #about .image,
   #services header, #services .card,
   #testimonials header, #testimonials .testimonials,
-  #contact .text, #contact .image
+  #contact .text, #contact .image,
+  footer .brand, footer .social
   `,
   { interval: 200 }
 )
+
+// BOTAO VOLTAR PARA O TOPO
+
+function backToTop() {
+  const backToTopButton = document.querySelector('.back-to-top')
+  if (window.scrollY >= 600) {
+    backToTopButton.classList.add('show')
+  } else {
+    backToTopButton.classList.remove('show')
+  }
+}
+
+window.addEventListener('scroll', backToTop, changeHeaderWhenScroll)
